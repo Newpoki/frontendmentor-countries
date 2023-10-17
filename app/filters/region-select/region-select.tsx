@@ -1,11 +1,13 @@
 'use client';
 
 import Chevron from '@/public/assets/chevron.svg';
+import Close from '@/public/assets/close.svg';
 import { RegionSelectItem } from './region-select-item';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { RegionName } from '@/app/types';
 import { REGIONS_OPTIONS } from '@/app/constants';
+import { useRouter } from 'next/navigation';
 
 type Props = {
     className?: string;
@@ -14,6 +16,7 @@ type Props = {
 
 export const RegionSelect = ({ className, value }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
+    const router = useRouter();
 
     const rootRef = useRef<HTMLDivElement>(null);
 
@@ -24,6 +27,19 @@ export const RegionSelect = ({ className, value }: Props) => {
     const handleToggleIsOpen = useCallback(() => {
         setIsOpen((currentValue) => !currentValue);
     }, []);
+
+    const handleDeleteSelectedOption = useCallback(
+        (event: React.MouseEvent<HTMLButtonElement>) => {
+            // Stopping propagation, otherwise it also click on the main button
+            // and call the toggle is open callback
+            event.stopPropagation();
+
+            setIsOpen(false);
+
+            router.push('/');
+        },
+        [router]
+    );
 
     const handleClickOutside = useCallback((event: MouseEvent) => {
         if (rootRef.current == null || rootRef.current.contains(event.target as Node)) {
@@ -51,12 +67,21 @@ export const RegionSelect = ({ className, value }: Props) => {
                     {selectedOption?.label ?? 'Filter by Region'}
                 </span>
 
-                <Chevron
-                    className={twMerge(
-                        'w-[10px] text-black transition-transform dark:text-white desktop:w-[12px]',
-                        isOpen && 'rotate-180'
+                <div className="flex items-center gap-1.5">
+                    {selectedOption != null && (
+                        <Close
+                            className="w-[10px] desktop:w-[12px]"
+                            onClick={handleDeleteSelectedOption}
+                        />
                     )}
-                />
+
+                    <Chevron
+                        className={twMerge(
+                            'w-[10px] transition-transform desktop:w-[12px]',
+                            isOpen && 'rotate-180'
+                        )}
+                    />
+                </div>
             </button>
 
             <menu
