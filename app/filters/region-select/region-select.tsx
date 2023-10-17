@@ -13,7 +13,11 @@ const REGIONS_OPTIONS = [
     { label: 'Oceania', value: 'oceania' },
 ] as const;
 
-export const RegionSelect = () => {
+type Props = {
+    className?: string;
+};
+
+export const RegionSelect = ({ className }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const rootRef = useRef<HTMLDivElement>(null);
@@ -40,7 +44,7 @@ export const RegionSelect = () => {
     }, [handleClickOutside]);
 
     return (
-        <div className="relative w-[200px]" ref={rootRef}>
+        <div className={twMerge('relative', className)} ref={rootRef}>
             <button
                 className="flex w-full items-center justify-between rounded-[5px] bg-white py-[14px] pl-6 pr-[19px] shadow-md dark:bg-slate500 desktop:py-[18px] desktop:text-[14px]"
                 onClick={handleToggleIsOpen}

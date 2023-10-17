@@ -9,7 +9,7 @@ export const SearchTextField = ({ className }: Props) => {
     return (
         <label
             className={twMerge(
-                'flex items-center gap-[26px] rounded-[5px] bg-white px-8 py-[14px] shadow-md dark:bg-slate500 desktop:gap-[24px] desktop:py-[19px]',
+                'flex items-center gap-[26px] rounded-[5px] bg-white px-8 py-[14px] shadow-md dark:bg-slate500  desktop:gap-[24px] desktop:py-[19px]',
                 className
             )}
         >

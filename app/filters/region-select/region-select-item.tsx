@@ -1,8 +1,8 @@
 'use client';
 
 import { twMerge } from 'tailwind-merge';
-import { CountryRegionOption } from '../types';
 import Link from 'next/link';
+import { CountryRegionOption } from '@/app/types';
 
 type Props = {
     isSelected?: boolean;
