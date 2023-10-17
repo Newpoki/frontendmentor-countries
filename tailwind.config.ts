@@ -20,7 +20,7 @@ const config: Config = {
       slate500: "#2B3844",
       slate700: "#202C36",
     },
-    extend: {},
+    extend: {}
   },
   plugins: [],
 };
