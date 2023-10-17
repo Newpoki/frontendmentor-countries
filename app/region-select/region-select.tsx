@@ -2,8 +2,7 @@
 
 import Chevron from '@/public/assets/chevron.svg';
 import { RegionSelectItem } from './region-select-item';
-import { useCallback, useState } from 'react';
-import { CountryRegionOption } from '../types';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 const REGIONS_OPTIONS = [
@@ -17,26 +16,34 @@ const REGIONS_OPTIONS = [
 export const RegionSelect = () => {
     const [isOpen, setIsOpen] = useState(false);
 
+    const rootRef = useRef<HTMLDivElement>(null);
+
     const handleToggleIsOpen = useCallback(() => {
+        console.log('duh');
         setIsOpen((currentValue) => !currentValue);
     }, []);
 
-    const handleCloseMenu = useCallback(() => {
+    const handleClickOutside = useCallback((event: MouseEvent) => {
+        if (rootRef.current == null || rootRef.current.contains(event.target as Node)) {
+            return;
+        }
+
         setIsOpen(false);
     }, []);
 
-    const handleChangeOption = useCallback((selectedOption: CountryRegionOption) => {
-        // TODO: Should add countryRegion search parameters in url
-        // So we can check url to determine which value is selected
-        console.log(selectedOption);
-    }, []);
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [handleClickOutside]);
 
     return (
-        <div className="relative w-[200px]">
+        <div className="relative w-[200px]" ref={rootRef}>
             <button
                 className="flex w-full items-center justify-between rounded-[5px] bg-white py-[14px] pl-6 pr-[19px] shadow-md dark:bg-slate500"
                 onClick={handleToggleIsOpen}
-                onBlur={handleCloseMenu}
             >
                 <span className="text-[12px] font-[400] leading-[20px]">Filter by Region</span>
                 <Chevron
@@ -52,15 +59,10 @@ export const RegionSelect = () => {
                     'absolute w-full translate-y-1 scale-0 rounded-[5px] bg-white pb-3 pt-4 shadow-md transition-transform dark:bg-slate500',
                     isOpen && 'block scale-100'
                 )}
+                onClick={handleToggleIsOpen}
             >
                 {REGIONS_OPTIONS.map((regionOption) => {
-                    return (
-                        <RegionSelectItem
-                            key={regionOption.value}
-                            option={regionOption}
-                            onClick={handleChangeOption}
-                        />
-                    );
+                    return <RegionSelectItem key={regionOption.value} option={regionOption} />;
                 })}
             </menu>
         </div>
