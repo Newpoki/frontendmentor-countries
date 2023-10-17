@@ -1,7 +1,9 @@
+import { SearchTextField } from './search-textfield';
+
 export default function Home() {
     return (
-        <main>
-            <h1>Home page</h1>
+        <main className="px-4 py-6">
+            <SearchTextField />
         </main>
     );
 }

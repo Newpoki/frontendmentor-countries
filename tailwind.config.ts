@@ -2,10 +2,6 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
     darkMode: 'class',
-    purge: {
-        enabled: true,
-        content: ['./app/**/*.tsx'],
-    },
     content: [
         './pages/**/*.{js,ts,jsx,tsx,mdx}',
         './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -29,6 +25,7 @@ const config: Config = {
             grey700: '#B2B2B2',
             slate500: '#2B3844',
             slate700: '#202C36',
+            transparent: 'transparent',
         },
         fontWeight: {
             light: '300',
