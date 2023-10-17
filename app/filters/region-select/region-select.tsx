@@ -2,28 +2,26 @@
 
 import Chevron from '@/public/assets/chevron.svg';
 import { RegionSelectItem } from './region-select-item';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-
-const REGIONS_OPTIONS = [
-    { label: 'Africa', value: 'africa' },
-    { label: 'America', value: 'america' },
-    { label: 'Asia', value: 'asia' },
-    { label: 'Europe', value: 'europe' },
-    { label: 'Oceania', value: 'oceania' },
-] as const;
+import { RegionName } from '@/app/types';
+import { REGIONS_OPTIONS } from '@/app/constants';
 
 type Props = {
     className?: string;
+    value: RegionName | undefined;
 };
 
-export const RegionSelect = ({ className }: Props) => {
+export const RegionSelect = ({ className, value }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const rootRef = useRef<HTMLDivElement>(null);
 
+    const selectedOption = useMemo(() => {
+        return REGIONS_OPTIONS.find((option) => option.value === value);
+    }, [value]);
+
     const handleToggleIsOpen = useCallback(() => {
-        console.log('duh');
         setIsOpen((currentValue) => !currentValue);
     }, []);
 
@@ -49,7 +47,10 @@ export const RegionSelect = ({ className }: Props) => {
                 className="flex w-full items-center justify-between rounded-[5px] bg-white py-[14px] pl-6 pr-[19px] shadow-md dark:bg-slate500 desktop:py-[18px] desktop:text-[14px]"
                 onClick={handleToggleIsOpen}
             >
-                <span className="text-[12px] font-[400] leading-[20px]">Filter by Region</span>
+                <span className="text-[12px] font-[400] leading-[20px]">
+                    {selectedOption?.label ?? 'Filter by Region'}
+                </span>
+
                 <Chevron
                     className={twMerge(
                         'w-[10px] text-black transition-transform dark:text-white desktop:w-[12px]',
@@ -66,7 +67,13 @@ export const RegionSelect = ({ className }: Props) => {
                 onClick={handleToggleIsOpen}
             >
                 {REGIONS_OPTIONS.map((regionOption) => {
-                    return <RegionSelectItem key={regionOption.value} option={regionOption} />;
+                    return (
+                        <RegionSelectItem
+                            key={regionOption.value}
+                            option={regionOption}
+                            isSelected={selectedOption?.value === regionOption.value}
+                        />
+                    );
                 })}
             </menu>
         </div>
