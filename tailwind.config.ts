@@ -13,7 +13,7 @@ const config: Config = {
         },
         colors: {
             white: '#FFFFFF',
-            black: '#000000',
+            black: '#111517',
             grey100: 'hsl(0, 0%, 98%)',
             grey500: '#C4C4C4',
             grey700: '#B2B2B2',
