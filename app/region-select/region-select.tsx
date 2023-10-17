@@ -42,13 +42,13 @@ export const RegionSelect = () => {
     return (
         <div className="relative w-[200px]" ref={rootRef}>
             <button
-                className="flex w-full items-center justify-between rounded-[5px] bg-white py-[14px] pl-6 pr-[19px] shadow-md dark:bg-slate500"
+                className="flex w-full items-center justify-between rounded-[5px] bg-white py-[14px] pl-6 pr-[19px] shadow-md dark:bg-slate500 desktop:py-[18px] desktop:text-[14px]"
                 onClick={handleToggleIsOpen}
             >
                 <span className="text-[12px] font-[400] leading-[20px]">Filter by Region</span>
                 <Chevron
                     className={twMerge(
-                        'w-[10px] text-black transition-transform dark:text-white',
+                        'w-[10px] text-black transition-transform dark:text-white desktop:w-[12px]',
                         isOpen && 'rotate-180'
                     )}
                 />
