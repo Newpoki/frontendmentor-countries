@@ -16,5 +16,5 @@ export const COUNTRIES_LIST_FIELDS = {
     FLAGS: 'flags',
     ID: 'id',
     ALT: 'alt',
-    CCA2: 'cca2',
+    CCA3: 'cca3',
 } as const;

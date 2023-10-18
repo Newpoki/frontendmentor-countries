@@ -16,11 +16,11 @@ export type CountriesListItem = {
         official: string;
     };
     capital: Array<string>;
-    region: RegionName;
+    region: string;
     flags: {
         svg: string;
         alt?: string;
     };
     population: number;
-    cca2: string;
+    cca3: string;
 };

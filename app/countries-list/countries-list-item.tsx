@@ -13,13 +13,13 @@ type Props = {
 export const CountriesListItem = ({ className, country, index }: Props) => {
     return (
         <li
-            key={country.cca2}
+            key={country.cca3}
             className={twMerge(
                 'rounded-[5px] bg-white shadow-shadow transition-opacity hover:opacity-50 dark:bg-slate500',
                 className
             )}
         >
-            <Link href={`/${country.cca2.toLocaleLowerCase()}`}>
+            <Link href={`/${country.cca3.toLocaleLowerCase()}`}>
                 <div className="relative flex h-auto min-h-[160px] w-[267px]">
                     <Image
                         src={country.flags.svg}

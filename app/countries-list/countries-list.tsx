@@ -60,7 +60,7 @@ export const CountriesList = async ({ region, search }: Props) => {
                 return (
                     <CountriesListItem
                         className="w-[267px]"
-                        key={country.cca2}
+                        key={country.cca3}
                         country={country}
                         index={index}
                     />
