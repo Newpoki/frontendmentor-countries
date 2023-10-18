@@ -5,6 +5,7 @@ import { COUNTRY_FIELDS } from './country-constants';
 import { Country as ICountry } from './country-types';
 import { CountryDataItem } from './country-data-item';
 import { CountryButton } from './country-button';
+import { CountryBackButton } from './country-back-button';
 
 type Props = {
     params: {
@@ -38,9 +39,7 @@ export default async function Country({ params }: Props) {
 
     return (
         <main className="flex flex-1 flex-col items-start overflow-auto px-[28px] pb-16 pt-10">
-            <CountryButton className="mb-16 shadow-[0px_0px_7px_0px_rgba(0,0,0,0.29)]">
-                Back
-            </CountryButton>
+            <CountryBackButton className="mb-16" />
 
             <div className="relative flex w-full flex-1 flex-col">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
