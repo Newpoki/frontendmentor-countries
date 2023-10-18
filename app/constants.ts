@@ -5,3 +5,14 @@ export const REGIONS_OPTIONS = [
     { label: 'Europe', value: 'europe' },
     { label: 'Oceania', value: 'oceania' },
 ] as const;
+
+export const COUNTRIES_LIST_FIELDS = {
+    NAME: 'name',
+    POPULATION: 'population',
+    REGION: 'region',
+    CAPITAL: 'capital',
+    FLAGS: 'flags',
+    ID: 'id',
+    ALT: 'alt',
+    CCA2: 'cca2',
+} as const;
