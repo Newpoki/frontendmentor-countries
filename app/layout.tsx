@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
             <body
-                className={`${nunito.className} flex h-[100dvh] flex-col overflow-hidden bg-grey100 text-black transition-colors dark:bg-slate700 dark:text-white`}
+                className={`${nunito.className} flex h-[100dvh] flex-col overflow-hidden bg-grey100 text-black  dark:bg-slate700 dark:text-white`}
             >
                 <Providers>
                     <Header />
