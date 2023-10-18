@@ -54,6 +54,10 @@ const fetchCountries = async (region: RegionName | undefined, search?: string) =
 export const CountriesList = async ({ region, search }: Props) => {
     const countries = await fetchCountries(region, search);
 
+    if (countries.length === 0) {
+        return <div>We found no country matching your filters.</div>;
+    }
+
     return (
         <ul className="flex flex-wrap justify-center gap-x-[65px] gap-y-[74px]">
             {countries.map((country, index) => {
