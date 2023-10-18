@@ -38,10 +38,10 @@ export default async function Country({ params }: Props) {
     const displayedLanguages = Object.values(country.languages).join(', ');
 
     return (
-        <main className="flex flex-1 flex-col items-start overflow-auto px-[28px] pb-16 pt-10">
-            <CountryBackButton className="mb-16" />
+        <main className="flex flex-1 flex-col items-start overflow-auto px-[28px] pb-16 pt-10 desktop:p-20">
+            <CountryBackButton className="mb-16 w-[104px] desktop:w-[136px]" />
 
-            <div className="relative flex w-full flex-1 flex-col">
+            <div className="relative flex w-full flex-1 flex-col desktop:grid desktop:grid-cols-2 desktop:gap-[144px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     className="mb-10 rounded-[6px]"
@@ -49,42 +49,55 @@ export default async function Country({ params }: Props) {
                     alt={country.flags.alt ?? `${country.name.official} flag`}
                 />
 
-                <h1 className="mb-4 text-[22px] font-extra-bold leading-none">
-                    {country.name.common}
-                </h1>
-
                 <section className="flex flex-col gap-8">
-                    <ul>
-                        {displayedNativeName != null && (
-                            <CountryDataItem label="Native Name" value={displayedNativeName} />
-                        )}
+                    <h1 className="mb-4 text-[22px] font-extra-bold leading-none desktop:text-[32px]">
+                        {country.name.common}
+                    </h1>
 
-                        <CountryDataItem label="Population" value={country.population} />
-                        <CountryDataItem label="Region" value={country.region} />
-                        <CountryDataItem label="Sub Region" value={country.subregion} />
-                        <CountryDataItem label="Capital" value={country.capital.join(', ')} />
-                    </ul>
+                    <div className="flex flex-col gap-8 desktop:flex-row desktop:justify-between">
+                        <ul>
+                            {displayedNativeName != null && (
+                                <CountryDataItem label="Native Name" value={displayedNativeName} />
+                            )}
 
-                    <ul>
-                        <CountryDataItem label="Top Level Domain" value={country.tld.join(', ')} />
-                        <CountryDataItem label="Currencies" value={displayedCurrencies} />
-                        <CountryDataItem label="Languages" value={displayedLanguages} />
-                    </ul>
-
-                    <nav className="flex flex-col gap-4">
-                        <h3 className="text-base font-semibold">Border Countries:</h3>
-                        <ul className="flex flex-wrap gap-[10px]">
-                            {country.borders.map((border) => {
-                                return (
-                                    <CountryButton
-                                        className="shadow-[0px_0px_4px_1px_rgba(0,0,0,0.10)]"
-                                        key={border}
-                                    >
-                                        {border}
-                                    </CountryButton>
-                                );
-                            })}
+                            <CountryDataItem label="Population" value={country.population} />
+                            <CountryDataItem label="Region" value={country.region} />
+                            <CountryDataItem label="Sub Region" value={country.subregion} />
+                            <CountryDataItem label="Capital" value={country.capital.join(', ')} />
                         </ul>
+
+                        <ul>
+                            <CountryDataItem
+                                label="Top Level Domain"
+                                value={country.tld.join(', ')}
+                            />
+                            <CountryDataItem label="Currencies" value={displayedCurrencies} />
+                            <CountryDataItem label="Languages" value={displayedLanguages} />
+                        </ul>
+                    </div>
+
+                    <nav className="flex flex-col gap-4 desktop:flex-row desktop:items-center">
+                        <h3 className="whitespace-nowrap text-base font-semibold">
+                            Border Countries:
+                        </h3>
+                        {country.borders.length > 0 ? (
+                            <ul className="flex flex-wrap gap-[10px]">
+                                {country.borders.map((border) => {
+                                    return (
+                                        <CountryButton
+                                            className="shadow-[0px_0px_4px_1px_rgba(0,0,0,0.10)]"
+                                            key={border}
+                                        >
+                                            {border}
+                                        </CountryButton>
+                                    );
+                                })}
+                            </ul>
+                        ) : (
+                            <span className="text-[13px] font-light">
+                                This country shares no borders with any other countries
+                            </span>
+                        )}
                     </nav>
                 </section>
             </div>

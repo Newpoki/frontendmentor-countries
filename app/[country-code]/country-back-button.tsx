@@ -18,7 +18,7 @@ export const CountryBackButton = ({ className }: Props) => {
     return (
         <CountryButton
             className={twMerge(
-                'flex items-center gap-2 shadow-[0px_0px_7px_0px_rgba(0,0,0,0.29)]',
+                'flex items-center justify-center gap-2 shadow-[0px_0px_7px_0px_rgba(0,0,0,0.29)] desktop:rounded-[6px] desktop:px-[8] desktop:py-[10px] desktop:text-base',
                 className
             )}
             onClick={handleClick}
