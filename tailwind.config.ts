@@ -14,8 +14,8 @@ const config: Config = {
             md: '0px 2px 9px 0px rgba(0, 0, 0, 0.05)',
         },
         screens: {
-            mobile: '375px',
-            desktop: '1440px',
+            tablet: '768px',
+            desktop: '1250px',
         },
         colors: {
             white: '#FFFFFF',

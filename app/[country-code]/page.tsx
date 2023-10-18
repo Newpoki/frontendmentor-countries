@@ -38,23 +38,23 @@ export default async function Country({ params }: Props) {
     const displayedLanguages = Object.values(country.languages).join(', ');
 
     return (
-        <main className="flex flex-1 flex-col items-start overflow-auto px-[28px] pb-16 pt-10 desktop:p-20">
-            <CountryBackButton className="mb-16 w-[104px] desktop:w-[136px]" />
+        <main className="tablet:p-20 flex flex-1 flex-col items-start overflow-auto px-[28px] pb-16 pt-10">
+            <CountryBackButton className="tablet:w-[136px] mb-16 w-[104px]" />
 
-            <div className="relative flex w-full flex-1 flex-col desktop:grid desktop:grid-cols-2 desktop:gap-[144px]">
+            <div className="tablet:gap-15 relative flex w-full flex-col desktop:grid desktop:grid-cols-2 desktop:items-center desktop:gap-[144px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                    className="mb-10 rounded-[6px]"
+                    className="mb-10 rounded-[6px] desktop:mb-0"
                     src={country.flags.svg}
                     alt={country.flags.alt ?? `${country.name.official} flag`}
                 />
 
                 <section className="flex flex-col gap-8">
-                    <h1 className="mb-4 text-[22px] font-extra-bold leading-none desktop:text-[32px]">
+                    <h1 className="tablet:text-[32px] mb-4 text-[22px] font-extra-bold leading-none">
                         {country.name.common}
                     </h1>
 
-                    <div className="flex flex-col gap-8 desktop:flex-row desktop:justify-between">
+                    <div className="tablet:flex-row tablet:justify-between flex flex-col gap-8">
                         <ul>
                             {displayedNativeName != null && (
                                 <CountryDataItem label="Native Name" value={displayedNativeName} />
@@ -76,7 +76,7 @@ export default async function Country({ params }: Props) {
                         </ul>
                     </div>
 
-                    <nav className="flex flex-col gap-4 desktop:flex-row desktop:items-center">
+                    <nav className="tablet:flex-row tablet:items-center flex flex-col gap-4">
                         <h3 className="whitespace-nowrap text-base font-semibold">
                             Border Countries:
                         </h3>
@@ -94,7 +94,7 @@ export default async function Country({ params }: Props) {
                                 })}
                             </ul>
                         ) : (
-                            <span className="text-[13px] font-light">
+                            <span className="text-[13px] font-light leading-[13px]">
                                 This country shares no borders with any other countries
                             </span>
                         )}

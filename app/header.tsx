@@ -13,12 +13,12 @@ export const Header = () => {
 
     return (
         <header className="flex items-center justify-between bg-white px-4 py-[30px] shadow-sm dark:bg-slate500">
-            <h1 className="font-extra-bold text-[14px] leading-[20px] desktop:text-[20px] desktop:leading-none">
+            <h1 className="tablet:text-[20px] tablet:leading-none text-[14px] font-extra-bold leading-[20px]">
                 Where in the world?
             </h1>
             <button className="flex items-center gap-2" onClick={handleToggleTheme}>
-                <QuarterMoon className="h-4 w-4 text-black dark:text-white desktop:h-5 desktop:w-5" />
-                <span className="text-[12px] font-semibold leading-none desktop:text-[16px]">
+                <QuarterMoon className="tablet:h-5 tablet:w-5 h-4 w-4 text-black dark:text-white" />
+                <span className="tablet:text-[16px] text-[12px] font-semibold leading-none">
                     Dark Mode
                 </span>
             </button>

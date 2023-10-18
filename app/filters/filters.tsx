@@ -8,8 +8,8 @@ type Props = {
 
 export const Filters = ({ region }: Props) => {
     return (
-        <section className="flex flex-col gap-10 desktop:flex-row desktop:justify-between">
-            <SearchTextField className="desktop:w-[480px]" />
+        <section className="tablet:flex-row tablet:justify-between flex flex-col gap-10">
+            <SearchTextField className="tablet:w-[400px]" />
 
             <RegionSelect className="w-[200px]" value={region} />
         </section>
