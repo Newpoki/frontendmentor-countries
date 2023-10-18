@@ -8,4 +8,5 @@ export const COUNTRY_FIELDS = {
     LANGUAGES: 'languages',
     BORDERS: 'borders',
     FLAGS: 'flags',
+    CCA3: 'cca3',
 };

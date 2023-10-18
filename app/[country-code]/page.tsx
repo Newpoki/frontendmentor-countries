@@ -1,31 +1,12 @@
-import { notFound } from 'next/navigation';
-import { API_BASE_URL } from '../constants';
-import { APIResponse } from '../types';
-import { COUNTRY_FIELDS } from './country-constants';
-import { Country as ICountry } from './country-types';
 import { CountryDataItem } from './country-data-item';
-import { CountryButton } from './country-button';
 import { CountryBackButton } from './country-back-button';
+import { CountryBordersButton } from './country-borders-button';
+import { fetchCountryData } from './tools/fetch-country-data';
 
 type Props = {
     params: {
         'country-code': string;
     };
-};
-
-const fetchCountryData = async (countryCode: string) => {
-    const fields = Object.values(COUNTRY_FIELDS).join(',');
-    const fieldsSuffix = `&fields=${fields}`;
-
-    const response = await fetch(`${API_BASE_URL}/alpha?codes=${countryCode}${fieldsSuffix}`);
-    const data: APIResponse<ICountry[]> = await response.json();
-
-    // If there is anything else than data, we return an empty array
-    if (!Array.isArray(data) || data.length === 0) {
-        notFound();
-    }
-
-    return data[0];
 };
 
 export default async function Country({ params }: Props) {
@@ -82,14 +63,12 @@ export default async function Country({ params }: Props) {
                         </h3>
                         {country.borders.length > 0 ? (
                             <ul className="flex flex-wrap gap-[10px]">
-                                {country.borders.map((border) => {
+                                {country.borders.map((borderCountryCode) => {
                                     return (
-                                        <CountryButton
-                                            className="shadow-[0px_0px_4px_1px_rgba(0,0,0,0.10)]"
-                                            key={border}
-                                        >
-                                            {border}
-                                        </CountryButton>
+                                        <CountryBordersButton
+                                            key={borderCountryCode}
+                                            borderCountryCode={borderCountryCode}
+                                        />
                                     );
                                 })}
                             </ul>
