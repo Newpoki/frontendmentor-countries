@@ -2,6 +2,9 @@ import { CountryDataItem } from './country-data-item';
 import { CountryBordersButton } from './country-borders-button';
 import { fetchCountryData } from './tools/fetch-country-data';
 import { Metadata } from 'next';
+import { COUNTRY_FIELDS } from './country-constants';
+import { API_BASE_URL } from '../constants';
+import { APIResponse } from '../types';
 
 type Props = {
     params: {
@@ -18,6 +21,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: displayedCountryName,
         description: `Learn more about ${displayedCountryName}!`,
     };
+}
+
+export async function generateStaticParams(): Promise<Props['params'][]> {
+    const fieldsSuffix = `&fields=${COUNTRY_FIELDS.CCA3}`;
+
+    const response = await fetch(`${API_BASE_URL}/all${fieldsSuffix}`);
+    const data: APIResponse<{ cca3: string }[]> = await response.json();
+
+    // If there is anything else than data, we return an empty array
+    if (!Array.isArray(data)) {
+        return [];
+    }
+
+    return data.map(({ cca3 }) => {
+        return { 'country-code': cca3 };
+    });
 }
 
 export default async function Country({ params }: Props) {
