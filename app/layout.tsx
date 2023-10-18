@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             suppressHydrationWarning
         >
             <body
-                className={`${nunito.className} bg-grey100 text-black transition-colors dark:bg-slate700 dark:text-white`}
+                className={`${nunito.className} flex h-[100dvh] flex-col overflow-hidden bg-grey100 text-black transition-colors dark:bg-slate700 dark:text-white`}
             >
                 <Providers>
                     <Header />
