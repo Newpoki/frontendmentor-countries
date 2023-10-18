@@ -13,7 +13,7 @@ export const Header = () => {
     }, [setTheme, resolvedTheme]);
 
     return (
-        <header className="flex items-center justify-between bg-white px-4 py-[30px] shadow-sm dark:bg-slate500 desktop:px-20 desktop:py-[26px] ">
+        <header className="sticky top-0 z-20 flex items-center justify-between bg-white px-4 py-[30px] shadow-sm dark:bg-slate500 desktop:px-20 desktop:py-[26px]">
             <Link href="/">
                 <h1 className="text-[14px] font-extra-bold leading-[20px] tablet:text-[24px] tablet:leading-none">
                     Where in the world?

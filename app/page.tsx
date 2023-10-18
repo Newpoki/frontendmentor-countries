@@ -18,7 +18,7 @@ export default function Home({ searchParams }: Props) {
     }
 
     return (
-        <main className="flex flex-1 flex-col gap-8 overflow-y-auto px-4 py-6 desktop:gap-12 desktop:px-20 desktop:py-12">
+        <main className="flex flex-1 flex-col gap-8 px-4 py-6 desktop:gap-12 desktop:px-20 desktop:py-12">
             <Filters region={region} />
 
             <CountriesList region={region} search={search} />
