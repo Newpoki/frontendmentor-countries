@@ -86,7 +86,7 @@ export const RegionSelect = ({ className, value }: Props) => {
 
             <menu
                 className={twMerge(
-                    'absolute w-full translate-y-1 scale-0 rounded-[5px] bg-white pb-3 pt-4 shadow-md transition-transform dark:bg-slate500',
+                    'absolute z-10 w-full translate-y-1 scale-0 rounded-[5px] bg-white pb-3 pt-4 shadow-md transition-transform dark:bg-slate500',
                     isOpen && 'block scale-100'
                 )}
                 onClick={handleToggleIsOpen}
