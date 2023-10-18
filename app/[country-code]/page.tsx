@@ -57,26 +57,21 @@ export default async function Country({ params }: Props) {
                         </ul>
                     </div>
 
-                    <nav className="tablet:flex-row tablet:items-center flex flex-col gap-4">
+                    <nav className="tablet:flex-row tablet:items-baseline flex flex-col gap-4">
                         <h3 className="whitespace-nowrap text-base font-semibold">
                             Border Countries:
                         </h3>
-                        {country.borders.length > 0 ? (
-                            <ul className="flex flex-wrap gap-[10px]">
-                                {country.borders.map((borderCountryCode) => {
-                                    return (
-                                        <CountryBordersButton
-                                            key={borderCountryCode}
-                                            borderCountryCode={borderCountryCode}
-                                        />
-                                    );
-                                })}
-                            </ul>
-                        ) : (
-                            <span className="text-[13px] font-light leading-[13px]">
-                                This country shares no borders with any other countries
-                            </span>
-                        )}
+
+                        <ul className="flex flex-wrap gap-[10px]">
+                            {country.borders.map((borderCountryCode) => {
+                                return (
+                                    <CountryBordersButton
+                                        key={borderCountryCode}
+                                        borderCountryCode={borderCountryCode}
+                                    />
+                                );
+                            })}
+                        </ul>
                     </nav>
                 </section>
             </div>
