@@ -4,19 +4,21 @@ import { CountriesListItemDataItem } from './countries-list-item-data-item';
 
 type Props = {
     country: ICountriesListItem;
+    index: number;
 };
 
-export const CountriesListItem = ({ country }: Props) => {
+export const CountriesListItem = ({ country, index }: Props) => {
     return (
-        <li key={country.cca2} className="rounded-[5px] bg-white shadow-shadow dark:bg-slate500">
-            <Image
-                src={country.flags.svg}
-                width={267}
-                height={160}
-                // Have to dupe style to avoid nextJS chrome warning
-                style={{ width: 267, height: 160 }}
-                alt={country.flags.alt ?? `${country.name.official} flag`}
-            />
+        <li key={country.cca2} className=" rounded-[5px] bg-white shadow-shadow dark:bg-slate500">
+            <div className="relative flex h-auto min-h-[160px] w-[267px]">
+                <Image
+                    src={country.flags.svg}
+                    fill
+                    priority={index === 0}
+                    style={{ objectFit: 'cover' }}
+                    alt={country.flags.alt ?? `${country.name.official} flag`}
+                />
+            </div>
 
             <section className="p-6 desktop:px-6 desktop:pb-[46px] desktop:pt-6">
                 <h3 className="mb-4 text-[18px] font-extra-bold leading-[26px]">

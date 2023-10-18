@@ -21,9 +21,9 @@ export const CountriesList = async ({ region, search }: Props) => {
     const countries = await fetchCountries(region, search);
 
     return (
-        <ul>
-            {countries.map((country) => {
-                return <CountriesListItem key={country.cca2} country={country} />;
+        <ul className="flex flex-wrap gap-x-[65px] gap-y-[74px]">
+            {countries.map((country, index) => {
+                return <CountriesListItem key={country.cca2} country={country} index={index} />;
             })}
         </ul>
     );
