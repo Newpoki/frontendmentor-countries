@@ -11,7 +11,7 @@ export const CountryBordersButton = async ({ borderCountryCode }: Props) => {
 
     return (
         <CountryButton className="shadow-[0px_0px_4px_1px_rgba(0,0,0,0.10)]">
-            <Link href={`/${countryBorderCountryData.cca3}`}>
+            <Link href={`/${countryBorderCountryData.cca3.toLocaleLowerCase()}`}>
                 {countryBorderCountryData.name.common}
             </Link>
         </CountryButton>

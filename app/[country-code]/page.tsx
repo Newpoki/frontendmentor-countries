@@ -2,12 +2,24 @@ import { CountryDataItem } from './country-data-item';
 import { CountryBackButton } from './country-back-button';
 import { CountryBordersButton } from './country-borders-button';
 import { fetchCountryData } from './tools/fetch-country-data';
+import { Metadata } from 'next';
 
 type Props = {
     params: {
         'country-code': string;
     };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const country = await fetchCountryData(params['country-code']);
+
+    const displayedCountryName = country.name.common;
+
+    return {
+        title: displayedCountryName,
+        description: `Learn more about ${displayedCountryName}!`,
+    };
+}
 
 export default async function Country({ params }: Props) {
     const country = await fetchCountryData(params['country-code']);
