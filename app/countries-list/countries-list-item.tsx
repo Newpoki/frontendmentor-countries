@@ -13,7 +13,10 @@ export const CountriesListItem = ({ className, country, index }: Props) => {
     return (
         <li
             key={country.cca2}
-            className={twMerge('rounded-[5px] bg-white shadow-shadow dark:bg-slate500', className)}
+            className={twMerge(
+                'cursor-pointer rounded-[5px] bg-white shadow-shadow transition-opacity hover:opacity-50 dark:bg-slate500',
+                className
+            )}
         >
             <div className="relative flex h-auto min-h-[160px] w-[267px]">
                 <Image
@@ -32,7 +35,6 @@ export const CountriesListItem = ({ className, country, index }: Props) => {
 
                 <ul className="flex flex-col gap-2">
                     <CountriesListItemDataItem label="Population" value={country.population} />
-
                     <CountriesListItemDataItem label="Region" value={country.region} />
                     <CountriesListItemDataItem label="Capital" value={country.capital} />
                 </ul>
