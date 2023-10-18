@@ -7,7 +7,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { RegionName } from '@/app/types';
 import { REGIONS_OPTIONS } from '@/app/constants';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 type Props = {
     className?: string;
@@ -17,6 +17,8 @@ type Props = {
 export const RegionSelect = ({ className, value }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
 
     const rootRef = useRef<HTMLDivElement>(null);
 
@@ -30,15 +32,19 @@ export const RegionSelect = ({ className, value }: Props) => {
 
     const handleDeleteSelectedOption = useCallback(
         (event: React.MouseEvent<HTMLButtonElement>) => {
+            const params = new URLSearchParams(searchParams);
+
             // Stopping propagation, otherwise it also click on the main button
             // and call the toggle is open callback
             event.stopPropagation();
 
             setIsOpen(false);
 
-            router.push('/');
+            params.delete('region');
+
+            router.push(`${pathname}?${params}`);
         },
-        [router]
+        [pathname, router, searchParams]
     );
 
     const handleClickOutside = useCallback((event: MouseEvent) => {

@@ -1,15 +1,20 @@
 import Image from 'next/image';
 import { CountriesListItem as ICountriesListItem } from '../types';
 import { CountriesListItemDataItem } from './countries-list-item-data-item';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
+    className?: string;
     country: ICountriesListItem;
     index: number;
 };
 
-export const CountriesListItem = ({ country, index }: Props) => {
+export const CountriesListItem = ({ className, country, index }: Props) => {
     return (
-        <li key={country.cca2} className=" rounded-[5px] bg-white shadow-shadow dark:bg-slate500">
+        <li
+            key={country.cca2}
+            className={twMerge('rounded-[5px] bg-white shadow-shadow dark:bg-slate500', className)}
+        >
             <div className="relative flex h-auto min-h-[160px] w-[267px]">
                 <Image
                     src={country.flags.svg}

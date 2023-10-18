@@ -1,5 +1,7 @@
 import { REGIONS_OPTIONS } from './constants';
 
+export type APIResponse<TData> = { status: number; message: string } | TData;
+
 export type RegionName = (typeof REGIONS_OPTIONS)[number]['value'];
 
 export type CountryRegionOption = {

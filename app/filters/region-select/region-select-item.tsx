@@ -3,6 +3,7 @@
 import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 import { CountryRegionOption } from '@/app/types';
+import { useSearchParams } from 'next/navigation';
 
 type Props = {
     isSelected?: boolean;
@@ -10,6 +11,10 @@ type Props = {
 };
 
 export const RegionSelectItem = ({ isSelected = false, option }: Props) => {
+    const searchParams = useSearchParams();
+
+    const search = searchParams.get('search') ?? null;
+
     return (
         <li className="w-full">
             <Link
@@ -17,7 +22,7 @@ export const RegionSelectItem = ({ isSelected = false, option }: Props) => {
                     'flex px-6 py-1 text-[12px] font-[400] leading-[16px] hover:cursor-pointer hover:bg-grey500/30 desktop:text-[14px]',
                     isSelected && 'bg-grey500/50 hover:bg-grey500/50'
                 )}
-                href={{ query: { region: option.value } }}
+                href={{ query: { region: option.value, search } }}
             >
                 {option.label}
             </Link>
