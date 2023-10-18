@@ -10,11 +10,15 @@ type Props = {
 const fetchCountries = async (region: RegionName | undefined, search?: string) => {
     const fields = Object.values(COUNTRIES_LIST_FIELDS).join(',');
 
-    const response: Array<ICountriesListItem> = await fetch(
+    const countries: Array<ICountriesListItem> = await fetch(
         `https://restcountries.com/v3.1/all?fields=${fields}`
     ).then((data) => data.json());
 
-    return response;
+    const sortedCountries = countries.sort((a, b) => {
+        return a.name.common.localeCompare(b.name.common, 'en', { sensitivity: 'base' });
+    });
+
+    return sortedCountries;
 };
 
 export const CountriesList = async ({ region, search }: Props) => {
